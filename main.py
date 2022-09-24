@@ -1,5 +1,6 @@
 
 import os
+from tabulate import tabulate
 
 class Player():
   def __init__(self, playerid, name, playersymbol):
@@ -26,7 +27,7 @@ class TableroPosicion():
     self.posicionx = posicionx
     self.posiciony = posiciony
     self.playerid = None
-    self.playersymbol = "/"
+    self.playersymbol = " "
     
 class Tablero():
   def __init__(self):
@@ -85,9 +86,11 @@ class Tablero():
     return position_edited
 
   def pintar_tablero(self):
+    lista_mayor = list()
     for i in range(3):
       
       tabla_fila = ""
+      lista_menor = list()
       
       for j in range(3):
         
@@ -98,7 +101,11 @@ class Tablero():
         
         tabla_fila += position_founded.playersymbol
         
-      print(tabla_fila)
+        lista_menor.append(position_founded.playersymbol)
+      
+      lista_mayor.append(lista_menor)
+      
+    print(tabulate(lista_mayor, tablefmt="grid"))
 
 def main():
   
